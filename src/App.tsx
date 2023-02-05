@@ -1,26 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+import ToDoApp from "./components/ToDoApp";
+import moment from "moment";
+import { GlobalStyles } from "./GlobalStyles/GlobalStyles";
+import { Helmet } from "react-helmet";
 
-function App() {
+export default function App() {
+  useEffect(() => {
+    const interval = setInterval(() => setDateState(moment()), 10000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const [dateState, setDateState] = useState(moment());
+  const clockTime = dateState.format("LT");
+  const dateNumber = dateState.format("ddd d");
+  const currentHour = parseFloat(dateState.format("H"));
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <GlobalStyles />
+      <Helmet>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Russo+One&display=swap"
+          rel="stylesheet"
+        />
+      </Helmet>
+
+      <div className="App">
+        <ToDO>Todo</ToDO>
+        <ToDoApp
+          clockTime={clockTime}
+          dateNumber={dateNumber}
+          currentHour={currentHour}
+        />
+      </div>
+    </>
   );
 }
 
-export default App;
+const ToDO = styled.h1`
+  font-size: 96px;
+  color: #007fdb;
+  font-family: "Inter", sans-serif;
+`;
