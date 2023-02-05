@@ -1,11 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import addIcon from "../assets/Vector.svg";
-
 function ToDoAdd() {
+  const RoundBtnStyle = {
+    top: "14px",
+    left: "45px",
+    position: "absolute",
+  };
   return (
     <AddCon>
-      <Icon></Icon>
+      <RoundBtn />
       <TodoInput type="text" placeholder="Note" />
       <AddBtn>
         <img src={addIcon} alt="+" />
@@ -24,16 +28,6 @@ const AddCon = styled.div`
   display: flex;
   justify-content: space-between;
   position: relative;
-`;
-
-const Icon = styled.button`
-  position: absolute;
-  height: 20px;
-  width: 20px;
-  border-radius: 10px;
-  border: 2px solid #20eeb0;
-  top: 14px;
-  left: 45px;
 `;
 
 const TodoInput = styled.input`
@@ -60,4 +54,14 @@ const AddBtn = styled.button`
   color: white;
   font-size: 16px;
   flex-shrink: 0;
+`;
+
+const RoundBtn = styled.button`
+  height: 20px;
+  width: 20px;
+  border-radius: 10px;
+  border: 2px solid #20eeb0;
+  top: 14px;
+  left: 45px;
+  position: absolute;
 `;
