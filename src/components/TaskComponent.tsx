@@ -3,15 +3,34 @@ import styled from "styled-components";
 import RoundBtnComp from "./RoundBtn";
 import trashIcon from "../assets/TrashIcon.svg";
 
-function TaskComponent() {
+interface dataType {
+  id: number;
+  task: string;
+  createDate: string;
+  isFinished: boolean;
+}
+
+interface Props {
+  setTaskData: React.Dispatch<React.SetStateAction<dataType[] | []>>;
+  taskData: dataType[] | [];
+  itemData: dataType;
+}
+
+function TaskComponent({ itemData, taskData, setTaskData }: Props) {
   return (
     <Task>
       <LeftCon>
-        <TaskName>Dinner</TaskName>
-        <TaskDate>Today at 8:00 PM</TaskDate>
+        <TaskName>{itemData.task}</TaskName>
+        <TaskDate>{itemData.createDate}</TaskDate>
       </LeftCon>
       <RightCon>
-        <RoundBtnComp />
+        <RoundBtnComp
+          isFinished={itemData.isFinished}
+          setTaskData={setTaskData}
+          taskData={taskData}
+          // itemId={itemData.id}
+          itemData={itemData}
+        />
         <TrashBtn>
           <img src={trashIcon} alt="Delete" />
         </TrashBtn>

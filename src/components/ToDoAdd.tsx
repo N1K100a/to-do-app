@@ -1,17 +1,62 @@
-import React from "react";
+import moment from "moment";
+import React, { useState } from "react";
 import styled from "styled-components";
 import addIcon from "../assets/Vector.svg";
-function ToDoAdd() {
-  const RoundBtnStyle = {
-    top: "14px",
-    left: "45px",
-    position: "absolute",
+
+interface dataType {
+  id: number;
+  task: string;
+  createDate: string;
+  isFinished: boolean;
+}
+
+interface Props {
+  setTaskData: React.Dispatch<React.SetStateAction<dataType[] | []>>;
+  taskData: dataType[] | [];
+}
+function ToDoAdd({ setTaskData, taskData }: Props) {
+  const [roundIsActive, setRoundIsActive] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+
+  let length = 0;
+  if (Array.isArray(taskData)) {
+    length = taskData.length;
+  }
+
+  const currentAddData = {
+    id: length + 1,
+    task: inputValue,
+    createDate: moment().format(),
+    isFinished: roundIsActive,
   };
   return (
     <AddCon>
-      <RoundBtn />
-      <TodoInput type="text" placeholder="Note" />
-      <AddBtn>
+      <RoundBtn
+        style={
+          roundIsActive
+            ? { backgroundColor: "#20eeb0" }
+            : { background: "none" }
+        }
+        onClick={() => {
+          setRoundIsActive(!roundIsActive);
+        }}
+      />
+      <TodoInput
+        value={inputValue}
+        type="text"
+        placeholder="Note"
+        onChange={(e) => {
+          setInputValue(e.target.value);
+        }}
+      />
+      <AddBtn
+        onClick={() => {
+          if (inputValue) {
+            setTaskData([...taskData, currentAddData]);
+            setInputValue("");
+            setRoundIsActive(false);
+          }
+        }}>
         <img src={addIcon} alt="+" />
       </AddBtn>
     </AddCon>
@@ -64,4 +109,8 @@ const RoundBtn = styled.button`
   top: 14px;
   left: 45px;
   position: absolute;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

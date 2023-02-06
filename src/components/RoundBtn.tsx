@@ -1,9 +1,41 @@
 import React from "react";
 import styled from "styled-components";
 
-function RoundBtnComp() {
+interface dataType {
+  id: number;
+  task: string;
+  createDate: string;
+  isFinished: boolean;
+}
+
+interface Props {
+  isFinished: boolean;
+  setTaskData: React.Dispatch<React.SetStateAction<dataType[] | []>>;
+  taskData: dataType[] | [];
+  itemData: dataType;
+}
+
+function RoundBtnComp({ isFinished, setTaskData, taskData, itemData }: Props) {
+  const changeRound = (id: number) => {
+    const newArray = taskData.map((item) => {
+      if (item.id === id) {
+        return { ...item, isFinished: !item.isFinished };
+      }
+      return item;
+    });
+    setTaskData(newArray);
+  };
+
   return (
-    <RoundBtn>
+    <RoundBtn
+      onClick={() => {
+        changeRound(itemData.id);
+      }}
+      style={
+        isFinished
+          ? { backgroundColor: "#20eeb0" }
+          : { backgroundColor: "white" }
+      }>
       <svg
         width="9"
         height="7"
@@ -27,4 +59,8 @@ const RoundBtn = styled.button`
   border-radius: 10px;
   border: 2px solid #20eeb0;
   background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 `;

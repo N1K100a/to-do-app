@@ -13,8 +13,9 @@ export default function App() {
 
   const [dateState, setDateState] = useState(moment());
   const clockTime = dateState.format("LT");
-  const dateNumber = dateState.format("ddd d");
+  const dateNumber = dateState.format("ddd D");
   const currentHour = parseFloat(dateState.format("H"));
+  console.log(dateNumber);
 
   return (
     <>

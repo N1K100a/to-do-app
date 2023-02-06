@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import ToDoAdd from "./ToDoAdd";
 import ToDoBoard from "./ToDoBoard";
@@ -9,8 +9,16 @@ interface Props {
   dateNumber: string;
   currentHour: number;
 }
+interface dataType {
+  id: number;
+  task: string;
+  createDate: string;
+  isFinished: boolean;
+}
 
 export default function ToDoApp({ clockTime, dateNumber, currentHour }: Props) {
+  const [taskData, setTaskData] = useState<dataType[] | []>([]);
+
   return (
     <ToDoCon>
       <ToDoClock
@@ -18,8 +26,8 @@ export default function ToDoApp({ clockTime, dateNumber, currentHour }: Props) {
         dateNumber={dateNumber}
         currentHour={currentHour}
       />
-      <ToDoAdd />
-      <ToDoBoard />
+      <ToDoAdd setTaskData={setTaskData} taskData={taskData} />
+      <ToDoBoard setTaskData={setTaskData} taskData={taskData} />
     </ToDoCon>
   );
 }
