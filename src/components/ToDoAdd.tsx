@@ -29,6 +29,8 @@ function ToDoAdd({ setTaskData, taskData }: Props) {
     createDate: moment().format(),
     isFinished: roundIsActive,
   };
+
+  console.log("add");
   return (
     <AddCon>
       <RoundBtn

@@ -7,7 +7,7 @@ import { Helmet } from "react-helmet";
 
 export default function App() {
   useEffect(() => {
-    const interval = setInterval(() => setDateState(moment()), 10000);
+    const interval = setInterval(() => setDateState(moment()), 1000);
     return () => clearInterval(interval);
   }, []);
 
@@ -15,7 +15,6 @@ export default function App() {
   const clockTime = dateState.format("LT");
   const dateNumber = dateState.format("ddd D");
   const currentHour = parseFloat(dateState.format("H"));
-  console.log(dateNumber);
 
   return (
     <>

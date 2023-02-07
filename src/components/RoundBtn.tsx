@@ -9,13 +9,12 @@ interface dataType {
 }
 
 interface Props {
-  isFinished: boolean;
   setTaskData: React.Dispatch<React.SetStateAction<dataType[] | []>>;
   taskData: dataType[] | [];
   itemData: dataType;
 }
 
-function RoundBtnComp({ isFinished, setTaskData, taskData, itemData }: Props) {
+function RoundBtnComp({ setTaskData, taskData, itemData }: Props) {
   const changeRound = (id: number) => {
     const newArray = taskData.map((item) => {
       if (item.id === id) {
@@ -32,7 +31,7 @@ function RoundBtnComp({ isFinished, setTaskData, taskData, itemData }: Props) {
         changeRound(itemData.id);
       }}
       style={
-        isFinished
+        itemData.isFinished
           ? { backgroundColor: "#20eeb0" }
           : { backgroundColor: "white" }
       }>

@@ -15,18 +15,20 @@ interface Props {
 }
 
 function ToDoBoard({ taskData, setTaskData }: Props) {
-  const TaskComps = taskData?.map((itemData, index) => (
+  console.log("board");
+  const TaskComps = taskData.map((itemData, index) => (
     <TaskComponent
       setTaskData={setTaskData}
       taskData={taskData}
       key={index}
+      id={index}
       itemData={itemData}
     />
   ));
   return <ToDoBoardStyled>{TaskComps}</ToDoBoardStyled>;
 }
 
-export default ToDoBoard;
+export default React.memo(ToDoBoard);
 
 const ToDoBoardStyled = styled.div`
   width: 100%;

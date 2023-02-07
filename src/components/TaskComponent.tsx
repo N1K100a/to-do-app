@@ -14,9 +14,19 @@ interface Props {
   setTaskData: React.Dispatch<React.SetStateAction<dataType[] | []>>;
   taskData: dataType[] | [];
   itemData: dataType;
+  id: number;
 }
 
-function TaskComponent({ itemData, taskData, setTaskData }: Props) {
+function TaskComponent({ itemData, taskData, setTaskData, id }: Props) {
+  const taskRemove = (id: number) => {
+    const newArray = taskData
+      .filter((item) => item.id !== id)
+      .map((item, index) => {
+        return { ...item, id: index + 1 };
+      });
+    setTaskData(newArray);
+  };
+
   return (
     <Task>
       <LeftCon>
@@ -25,13 +35,14 @@ function TaskComponent({ itemData, taskData, setTaskData }: Props) {
       </LeftCon>
       <RightCon>
         <RoundBtnComp
-          isFinished={itemData.isFinished}
           setTaskData={setTaskData}
           taskData={taskData}
-          // itemId={itemData.id}
           itemData={itemData}
         />
-        <TrashBtn>
+        <TrashBtn
+          onClick={() => {
+            taskRemove(itemData.id);
+          }}>
           <img src={trashIcon} alt="Delete" />
         </TrashBtn>
       </RightCon>

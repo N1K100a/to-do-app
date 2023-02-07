@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import ToDoAdd from "./ToDoAdd";
 import ToDoBoard from "./ToDoBoard";
@@ -18,6 +18,14 @@ interface dataType {
 
 export default function ToDoApp({ clockTime, dateNumber, currentHour }: Props) {
   const [taskData, setTaskData] = useState<dataType[] | []>([]);
+
+  useEffect(() => {
+    setTaskData(JSON.parse(localStorage.getItem("taskData") || "[]"));
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("taskData", JSON.stringify(taskData));
+  }, [taskData]);
 
   return (
     <ToDoCon>
