@@ -21,7 +21,6 @@ function ToDoBoard({ taskData, setTaskData }: Props) {
       setTaskData={setTaskData}
       taskData={taskData}
       key={index}
-      id={index}
       itemData={itemData}
     />
   ));

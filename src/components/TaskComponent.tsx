@@ -14,19 +14,24 @@ interface Props {
   setTaskData: React.Dispatch<React.SetStateAction<dataType[] | []>>;
   taskData: dataType[] | [];
   itemData: dataType;
-  id: number;
 }
 
-function TaskComponent({ itemData, taskData, setTaskData, id }: Props) {
+function TaskComponent({ itemData, taskData, setTaskData }: Props) {
   const taskRemove = (id: number) => {
     const newArray = taskData
-      .filter((item) => item.id !== id)
+      .filter((item) => {
+        return item.id !== id || !item.isFinished;
+      })
       .map((item, index) => {
         return { ...item, id: index + 1 };
       });
     setTaskData(newArray);
   };
 
+  const trashActiveStyle = {
+    opacity: 1,
+    cursor: "pointer",
+  };
   return (
     <Task>
       <LeftCon>
@@ -40,6 +45,7 @@ function TaskComponent({ itemData, taskData, setTaskData, id }: Props) {
           itemData={itemData}
         />
         <TrashBtn
+          style={itemData.isFinished ? trashActiveStyle : {}}
           onClick={() => {
             taskRemove(itemData.id);
           }}>
@@ -99,4 +105,5 @@ const TrashBtn = styled.button`
   border: none;
   background: none;
   margin-left: 14px;
+  opacity: 0.5;
 `;
