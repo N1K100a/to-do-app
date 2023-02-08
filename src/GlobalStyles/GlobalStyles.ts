@@ -26,6 +26,9 @@ html {
     @media (max-width: 800px) {
       align-items: flex-start;
     }
+    @media (max-width: 480px){
+      padding: 20px 0;
+    }
 
 
  }

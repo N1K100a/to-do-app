@@ -47,6 +47,8 @@ const FilterCon = styled.div`
   padding: 0 29px;
   display: flex;
   justify-content: space-between;
+  position: absolute;
+  bottom: 20px;
 `;
 
 const FilterBtn = styled.button`

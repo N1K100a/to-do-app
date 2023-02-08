@@ -69,6 +69,7 @@ const Day = styled.p`
 `;
 
 const Hours = styled.div`
+  overflow: hidden;
   font-size: 48px;
   line-height: 52px;
   font-family: "Russo One", sans-serif;
@@ -82,7 +83,8 @@ const Hours = styled.div`
 `;
 
 const Img = styled.img`
-  height: 100%;
   width: 100%;
+  height: 100%;
   position: absolute;
+  object-fit: cover;
 `;

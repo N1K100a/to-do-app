@@ -51,5 +51,9 @@ const ToDoBoardStyled = styled.div`
     ::-webkit-scrollbar {
       width: 3px;
     }
+
+    @media (max-width: 480px) {
+      height: calc(100% - 302px);
+    }
   }
 `;

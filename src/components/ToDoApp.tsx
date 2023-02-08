@@ -18,8 +18,19 @@ export default function ToDoApp() {
     localStorage.setItem("taskData", JSON.stringify(taskData));
   }, [taskData]);
 
+  const [innerHeight, setInnerHeight] = useState(window.innerHeight - 40);
+
+  const resize = () => {
+    setInnerHeight(window.innerHeight - 40);
+  };
+
+  window.addEventListener("resize", resize);
+
+  const mediaQuery = {
+    height: `${innerHeight}px`,
+  };
   return (
-    <ToDoCon>
+    <ToDoCon style={window.innerWidth < 481 ? mediaQuery : {}}>
       <ToDoClock />
       <ToDoAdd setTaskData={setTaskData} taskData={taskData} />
       <ToDoBoard
@@ -35,7 +46,6 @@ export default function ToDoApp() {
     </ToDoCon>
   );
 }
-
 const ToDoCon = styled.div`
   width: 430px;
   height: 636px;
@@ -43,6 +53,7 @@ const ToDoCon = styled.div`
   border-radius: 10px;
   overflow: hidden;
   display: flex;
+  position: relative;
   flex-direction: column;
 
   @media (max-width: 1400px) {
@@ -50,7 +61,7 @@ const ToDoCon = styled.div`
     height: 532px;
     border-radius: 8px;
   }
-  @media (max-width: 390px) {
+  @media (max-width: 480px) {
     width: 100%;
     margin: 0 15px;
   } ;

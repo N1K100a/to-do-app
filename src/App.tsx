@@ -21,7 +21,7 @@ export default function App() {
       </Helmet>
 
       <div className="App">
-        {width > 799 ? <ToDO>Todo</ToDO> : ""}
+        {width > 800 ? <ToDO>Todo</ToDO> : ""}
         <ToDoApp />
       </div>
     </>
