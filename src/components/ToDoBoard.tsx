@@ -32,6 +32,7 @@ function ToDoBoard({ taskData, setTaskData, isFiltered }: Props) {
     } else if (isFiltered === "done") {
       return itemData.isFinished ? task : "";
     }
+    return [];
   });
   return <ToDoBoardStyled>{TaskComps}</ToDoBoardStyled>;
 }
