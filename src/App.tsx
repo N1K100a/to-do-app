@@ -5,7 +5,7 @@ import { GlobalStyles } from "./GlobalStyles/GlobalStyles";
 import { Helmet } from "react-helmet";
 
 export default function App() {
-  const [width, setWidth] = useState(0);
+  const [width, setWidth] = useState(window.innerWidth);
   const resize = () => {
     setWidth(window.innerWidth);
   };
@@ -21,7 +21,7 @@ export default function App() {
       </Helmet>
 
       <div className="App">
-        {width > 801 ? <ToDO>Todo</ToDO> : ""}
+        {width > 799 ? <ToDO>Todo</ToDO> : ""}
         <ToDoApp />
       </div>
     </>
