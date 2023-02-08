@@ -1,21 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import CheckboxIcon from "../assets/checkboxIcon";
+import { roundBtnProps } from "./types/types";
 
-interface dataType {
-  id: number;
-  task: string;
-  createDate: string;
-  isFinished: boolean;
-}
-
-interface Props {
-  setTaskData: React.Dispatch<React.SetStateAction<dataType[] | []>>;
-  taskData: dataType[] | [];
-  itemData: dataType;
-}
-
-function RoundBtnComp({ setTaskData, taskData, itemData }: Props) {
+function RoundBtnComp({ setTaskData, taskData, itemData }: roundBtnProps) {
   const changeRound = (id: number) => {
     const newArray = taskData.map((item) => {
       if (item.id === id) {

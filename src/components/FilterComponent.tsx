@@ -1,27 +1,14 @@
 import React from "react";
 import styled from "styled-components";
+import { filterProps } from "./types/types";
 
-interface dataType {
-  id: number;
-  task: string;
-  createDate: string;
-  isFinished: boolean;
-}
-
-interface Props {
-  taskData: dataType[] | [];
-  setIsFiltered: React.Dispatch<React.SetStateAction<string>>;
-  isFiltered: string;
-}
-
-function FilterComponent({ taskData, setIsFiltered, isFiltered }: Props) {
-  let length = 0;
+function FilterComponent({ taskData, setIsFiltered, isFiltered }: filterProps) {
+  let length;
   if (Array.isArray(taskData)) {
     length = taskData.length;
   }
   let activeLength = taskData.filter((item) => !item.isFinished).length;
   let doneLength = taskData.filter((item) => item.isFinished).length;
-
   const filterStyle = { borderBottom: "2px solid #20eeb0" };
 
   return (

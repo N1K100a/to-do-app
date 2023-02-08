@@ -1,14 +1,20 @@
-import React from "react";
+import moment from "moment";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import day from "../assets/day.png";
 import night from "../assets/night.jpg";
 
-interface Props {
-  clockTime: string;
-  dateNumber: string;
-  currentHour: number;
-}
-function ToDoClock({ clockTime, dateNumber, currentHour }: Props) {
+function ToDoClock() {
+  useEffect(() => {
+    const interval = setInterval(() => setDateState(moment()), 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const [dateState, setDateState] = useState(moment());
+  const clockTime = dateState.format("LT");
+  const dateNumber = dateState.format("ddd D");
+  const currentHour = parseFloat(dateState.format("H"));
+
   let isNight: Boolean;
   if (currentHour >= 6 && currentHour <= 18) {
     isNight = false;

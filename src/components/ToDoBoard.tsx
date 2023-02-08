@@ -1,21 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import TaskComponent from "./TaskComponent";
+import { boardProps } from "./types/types";
 
-interface dataType {
-  id: number;
-  task: string;
-  createDate: string;
-  isFinished: boolean;
-}
-
-interface Props {
-  setTaskData: React.Dispatch<React.SetStateAction<dataType[] | []>>;
-  taskData: dataType[] | [];
-  isFiltered: string;
-}
-
-function ToDoBoard({ taskData, setTaskData, isFiltered }: Props) {
+function ToDoBoard({ taskData, setTaskData, isFiltered }: boardProps) {
   const TaskComps = taskData.map((itemData, index) => {
     const task = (
       <TaskComponent

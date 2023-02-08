@@ -3,21 +3,9 @@ import styled from "styled-components";
 import RoundBtnComp from "./RoundBtn";
 import trashIcon from "../assets/TrashIcon.svg";
 import moment from "moment";
+import { taskCompProps } from "./types/types";
 
-interface dataType {
-  id: number;
-  task: string;
-  createDate: string;
-  isFinished: boolean;
-}
-
-interface Props {
-  setTaskData: React.Dispatch<React.SetStateAction<dataType[] | []>>;
-  taskData: dataType[] | [];
-  itemData: dataType;
-}
-
-function TaskComponent({ itemData, taskData, setTaskData }: Props) {
+function TaskComponent({ itemData, taskData, setTaskData }: taskCompProps) {
   const taskRemove = (id: number) => {
     const newArray = taskData
       .filter((item) => {
@@ -33,10 +21,12 @@ function TaskComponent({ itemData, taskData, setTaskData }: Props) {
     opacity: 1,
     cursor: "pointer",
   };
+
   const date = moment(itemData.createDate);
   const today = moment().startOf("day");
   const yesterday = moment().startOf("day").subtract(1, "day");
   let outputTitle;
+
   if (date.isSame(today, "day")) {
     outputTitle = "today";
   } else if (date.isSame(yesterday, "day")) {

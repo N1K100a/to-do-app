@@ -1,21 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import ToDoApp from "./components/ToDoApp";
-import moment from "moment";
 import { GlobalStyles } from "./GlobalStyles/GlobalStyles";
 import { Helmet } from "react-helmet";
 
 export default function App() {
-  useEffect(() => {
-    const interval = setInterval(() => setDateState(moment()), 1000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const [dateState, setDateState] = useState(moment());
-  const clockTime = dateState.format("LT");
-  const dateNumber = dateState.format("ddd D");
-  const currentHour = parseFloat(dateState.format("H"));
-
   return (
     <>
       <GlobalStyles />
@@ -28,11 +17,7 @@ export default function App() {
 
       <div className="App">
         <ToDO>Todo</ToDO>
-        <ToDoApp
-          clockTime={clockTime}
-          dateNumber={dateNumber}
-          currentHour={currentHour}
-        />
+        <ToDoApp />
       </div>
     </>
   );

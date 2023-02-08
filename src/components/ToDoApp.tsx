@@ -4,20 +4,9 @@ import FilterComponent from "./FilterComponent";
 import ToDoAdd from "./ToDoAdd";
 import ToDoBoard from "./ToDoBoard";
 import ToDoClock from "./ToDoClock";
+import { dataType } from "./types/types";
 
-interface Props {
-  clockTime: string;
-  dateNumber: string;
-  currentHour: number;
-}
-interface dataType {
-  id: number;
-  task: string;
-  createDate: string;
-  isFinished: boolean;
-}
-
-export default function ToDoApp({ clockTime, dateNumber, currentHour }: Props) {
+export default function ToDoApp() {
   const [taskData, setTaskData] = useState<dataType[] | []>([]);
   const [isFiltered, setIsFiltered] = useState("all");
 
@@ -31,11 +20,7 @@ export default function ToDoApp({ clockTime, dateNumber, currentHour }: Props) {
 
   return (
     <ToDoCon>
-      <ToDoClock
-        clockTime={clockTime}
-        dateNumber={dateNumber}
-        currentHour={currentHour}
-      />
+      <ToDoClock />
       <ToDoAdd setTaskData={setTaskData} taskData={taskData} />
       <ToDoBoard
         setTaskData={setTaskData}

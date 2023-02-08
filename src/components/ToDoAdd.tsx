@@ -3,19 +3,9 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { AddBoxIcon } from "../assets/checkboxIcon";
 import addIcon from "../assets/Vector.svg";
+import { addProps } from "./types/types";
 
-interface dataType {
-  id: number;
-  task: string;
-  createDate: string;
-  isFinished: boolean;
-}
-
-interface Props {
-  setTaskData: React.Dispatch<React.SetStateAction<dataType[] | []>>;
-  taskData: dataType[] | [];
-}
-function ToDoAdd({ setTaskData, taskData }: Props) {
+function ToDoAdd({ setTaskData, taskData }: addProps) {
   const [roundIsActive, setRoundIsActive] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
