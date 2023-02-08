@@ -37,7 +37,6 @@ export default ToDoClock;
 const ToDoClockStyled = styled.div`
   height: 202px;
   width: 100%;
-  background-color: red;
   position: relative;
   flex-shrink: 0;
   @media (max-width: 1400px) {
