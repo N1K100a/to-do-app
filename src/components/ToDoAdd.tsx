@@ -1,6 +1,7 @@
 import moment from "moment";
 import React, { useState } from "react";
 import styled from "styled-components";
+import { AddBoxIcon } from "../assets/checkboxIcon";
 import addIcon from "../assets/Vector.svg";
 
 interface dataType {
@@ -30,7 +31,13 @@ function ToDoAdd({ setTaskData, taskData }: Props) {
     isFinished: roundIsActive,
   };
 
-  console.log("add");
+  const addFunction = () => {
+    if (inputValue) {
+      setTaskData([...taskData, currentAddData].sort((a, b) => b.id - a.id));
+      setInputValue("");
+      setRoundIsActive(false);
+    }
+  };
   return (
     <AddCon>
       <RoundBtn
@@ -41,9 +48,15 @@ function ToDoAdd({ setTaskData, taskData }: Props) {
         }
         onClick={() => {
           setRoundIsActive(!roundIsActive);
-        }}
-      />
+        }}>
+        <AddBoxIcon roundIsActive={roundIsActive} />
+      </RoundBtn>
       <TodoInput
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            addFunction();
+          }
+        }}
         value={inputValue}
         type="text"
         placeholder="Note"
@@ -53,11 +66,7 @@ function ToDoAdd({ setTaskData, taskData }: Props) {
       />
       <AddBtn
         onClick={() => {
-          if (inputValue) {
-            setTaskData([...taskData, currentAddData]);
-            setInputValue("");
-            setRoundIsActive(false);
-          }
+          addFunction();
         }}>
         <img src={addIcon} alt="+" />
       </AddBtn>

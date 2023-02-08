@@ -12,28 +12,47 @@ interface dataType {
 interface Props {
   setTaskData: React.Dispatch<React.SetStateAction<dataType[] | []>>;
   taskData: dataType[] | [];
+  isFiltered: string;
 }
 
-function ToDoBoard({ taskData, setTaskData }: Props) {
-  console.log("board");
-  const TaskComps = taskData.map((itemData, index) => (
-    <TaskComponent
-      setTaskData={setTaskData}
-      taskData={taskData}
-      key={index}
-      itemData={itemData}
-    />
-  ));
+function ToDoBoard({ taskData, setTaskData, isFiltered }: Props) {
+  const TaskComps = taskData.map((itemData, index) => {
+    const task = (
+      <TaskComponent
+        setTaskData={setTaskData}
+        taskData={taskData}
+        key={index}
+        itemData={itemData}
+      />
+    );
+
+    if (isFiltered === "all") return task;
+    else if (isFiltered === "active") {
+      return !itemData.isFinished ? task : "";
+    } else if (isFiltered === "done") {
+      return itemData.isFinished ? task : "";
+    }
+  });
   return <ToDoBoardStyled>{TaskComps}</ToDoBoardStyled>;
 }
 
 export default React.memo(ToDoBoard);
 
 const ToDoBoardStyled = styled.div`
-  width: 100%;
-  height: 100%;
-  padding: 36px 29px 54px 29px;
+  margin-top: 31px;
+  width: calc(100% - 19px);
+  height: 272px;
+  padding: 0 5px 0 29px;
   display: flex;
-  flex-direction: column-reverse;
-  justify-content: left;
+  flex-direction: column;
+  overflow-y: scroll;
+  ::-webkit-scrollbar {
+    width: 5px;
+    margin-right: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    width: 5px;
+    border-radius: 2.5px;
+    background-color: #ececec;
+  }
 `;

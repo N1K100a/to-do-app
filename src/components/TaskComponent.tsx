@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import RoundBtnComp from "./RoundBtn";
 import trashIcon from "../assets/TrashIcon.svg";
+import moment from "moment";
 
 interface dataType {
   id: number;
@@ -32,11 +33,26 @@ function TaskComponent({ itemData, taskData, setTaskData }: Props) {
     opacity: 1,
     cursor: "pointer",
   };
+  const date = moment(itemData.createDate);
+  const today = moment().startOf("day");
+  const yesterday = moment().startOf("day").subtract(1, "day");
+  let outputTitle;
+  if (date.isSame(today, "day")) {
+    outputTitle = "today";
+  } else if (date.isSame(yesterday, "day")) {
+    outputTitle = "yesterday";
+  } else {
+    outputTitle = date.fromNow();
+  }
+
+  const outputTime = date.format("LT");
   return (
     <Task>
       <LeftCon>
         <TaskName>{itemData.task}</TaskName>
-        <TaskDate>{itemData.createDate}</TaskDate>
+        <TaskDate>
+          {outputTitle} at {outputTime}
+        </TaskDate>
       </LeftCon>
       <RightCon>
         <RoundBtnComp

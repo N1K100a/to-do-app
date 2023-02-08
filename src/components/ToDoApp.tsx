@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import FilterComponent from "./FilterComponent";
 import ToDoAdd from "./ToDoAdd";
 import ToDoBoard from "./ToDoBoard";
 import ToDoClock from "./ToDoClock";
@@ -18,6 +19,7 @@ interface dataType {
 
 export default function ToDoApp({ clockTime, dateNumber, currentHour }: Props) {
   const [taskData, setTaskData] = useState<dataType[] | []>([]);
+  const [isFiltered, setIsFiltered] = useState("all");
 
   useEffect(() => {
     setTaskData(JSON.parse(localStorage.getItem("taskData") || "[]"));
@@ -35,7 +37,16 @@ export default function ToDoApp({ clockTime, dateNumber, currentHour }: Props) {
         currentHour={currentHour}
       />
       <ToDoAdd setTaskData={setTaskData} taskData={taskData} />
-      <ToDoBoard setTaskData={setTaskData} taskData={taskData} />
+      <ToDoBoard
+        setTaskData={setTaskData}
+        taskData={taskData}
+        isFiltered={isFiltered}
+      />
+      <FilterComponent
+        taskData={taskData}
+        setIsFiltered={setIsFiltered}
+        isFiltered={isFiltered}
+      />
     </ToDoCon>
   );
 }
