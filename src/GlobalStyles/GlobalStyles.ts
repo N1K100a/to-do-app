@@ -11,8 +11,9 @@ html {
  }
 
  .App{
+   overflow: auto;
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
     background-color: #EEEEEE;
     display: flex;
     justify-content: space-evenly;
