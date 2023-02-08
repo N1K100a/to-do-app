@@ -66,15 +66,20 @@ export default TaskComponent;
 
 const Task = styled.div`
   width: 100%;
-  height: 44px;
   margin-bottom: 24px;
   display: flex;
   justify-content: space-between;
+  @media (max-width: 1400px) {
+    margin-bottom: 20px;
+  }
 `;
 
 const LeftCon = styled.div`
   height: 100%;
-  width: auto;
+  width: 300px;
+  @media (max-width: 1400px) {
+    width: 250px;
+  }
 `;
 
 const RightCon = styled.div`
@@ -87,22 +92,30 @@ const RightCon = styled.div`
 `;
 
 const TaskName = styled.div`
-  height: 22px;
   width: auto;
   font-family: "Inter", sans-serif;
   font-weight: 500;
   font-size: 18px;
-  line-height: 22px;
+  line-height: 25px;
+  word-wrap: break-word;
+  @media (max-width: 1400px) {
+    line-height: 22px;
+    font-size: 15px;
+  }
 `;
 
 const TaskDate = styled.div`
-  height: 17px;
+  height: 19px;
   font-size: 14px;
-  line-height: 17px;
-  margin-top: 5px;
+  line-height: 19px;
   font-family: "Inter", sans-serif;
   color: #888888;
   font-weight: 400;
+  @media (max-width: 1400px) {
+    height: 15px;
+    line-height: 15px;
+    font-size: 11px;
+  }
 `;
 
 const TrashBtn = styled.button`
@@ -112,4 +125,9 @@ const TrashBtn = styled.button`
   background: none;
   margin-left: 14px;
   opacity: 0.5;
+  @media (max-width: 1400px) {
+    height: 20px;
+    width: 20px;
+    margin-left: 11px;
+  }
 `;

@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import ToDoApp from "./components/ToDoApp";
 import { GlobalStyles } from "./GlobalStyles/GlobalStyles";
 import { Helmet } from "react-helmet";
 
 export default function App() {
+  const [width, setWidth] = useState(0);
+  const resize = () => {
+    setWidth(window.innerWidth);
+  };
+  window.addEventListener("resize", resize);
   return (
     <>
       <GlobalStyles />
@@ -16,7 +21,7 @@ export default function App() {
       </Helmet>
 
       <div className="App">
-        <ToDO>Todo</ToDO>
+        {width > 801 ? <ToDO>Todo</ToDO> : ""}
         <ToDoApp />
       </div>
     </>
@@ -27,4 +32,7 @@ const ToDO = styled.h1`
   font-size: 96px;
   color: #007fdb;
   font-family: "Inter", sans-serif;
+  @media (max-width: 1400px) {
+    font-size: 80px;
+  }
 `;

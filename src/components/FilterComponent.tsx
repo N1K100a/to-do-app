@@ -41,7 +41,6 @@ function FilterComponent({ taskData, setIsFiltered, isFiltered }: filterProps) {
 export default FilterComponent;
 
 const FilterCon = styled.div`
-  height: 24px;
   width: 100%;
   flex-shrink: 0;
   margin-top: 5px;
@@ -62,8 +61,11 @@ const FilterBtn = styled.button`
   display: flex;
   background: none;
   color: #20eeb0;
-
   font-weight: 500;
+  @media (max-width: 1400px) {
+    font-size: 15px;
+    line-height: 18px;
+  }
 `;
 
 const BtnNumber = styled.div`

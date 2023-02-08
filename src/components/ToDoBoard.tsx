@@ -37,11 +37,19 @@ const ToDoBoardStyled = styled.div`
   overflow-y: scroll;
   ::-webkit-scrollbar {
     width: 5px;
-    margin-right: 10px;
   }
   ::-webkit-scrollbar-thumb {
-    width: 5px;
+    width: 100%;
     border-radius: 2.5px;
     background-color: #ececec;
+  }
+  @media (max-width: 1400px) {
+    height: 228px;
+    margin-top: 26px;
+    width: calc(100% - 13px);
+    padding: 0 8px 0 24px;
+    ::-webkit-scrollbar {
+      width: 3px;
+    }
   }
 `;

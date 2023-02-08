@@ -40,6 +40,9 @@ const ToDoClockStyled = styled.div`
   background-color: red;
   position: relative;
   flex-shrink: 0;
+  @media (max-width: 1400px) {
+    height: 168px;
+  }
 `;
 
 const ClockCon = styled.div`
@@ -47,8 +50,12 @@ const ClockCon = styled.div`
   flex-direction: column;
   text-align: end;
   position: absolute;
-  right: 6.5%;
-  bottom: 12.38%;
+  right: 30px;
+  bottom: 18px;
+  @media (max-width: 1400px) {
+    right: 25px;
+    bottom: 15px;
+  }
 `;
 
 const Day = styled.p`
@@ -56,6 +63,10 @@ const Day = styled.p`
   line-height: 22px;
   font-family: "Russo One", sans-serif;
   color: #ffffff;
+  @media (max-width: 1400px) {
+    font-size: 15px;
+    line-height: 19px;
+  }
 `;
 
 const Hours = styled.div`
@@ -65,6 +76,10 @@ const Hours = styled.div`
   font-weight: 400;
   font-style: normal;
   color: #ffffff;
+  @media (max-width: 1400px) {
+    font-size: 40px;
+    line-height: 44px;
+  }
 `;
 
 const Img = styled.img`

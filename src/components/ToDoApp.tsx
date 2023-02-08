@@ -44,4 +44,14 @@ const ToDoCon = styled.div`
   overflow: hidden;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 1400px) {
+    width: 360px;
+    height: 532px;
+    border-radius: 8px;
+  }
+  @media (max-width: 390px) {
+    width: 100%;
+    margin: 0 15px;
+  } ;
 `;

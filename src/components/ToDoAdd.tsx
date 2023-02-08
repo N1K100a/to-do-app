@@ -74,6 +74,13 @@ const AddCon = styled.div`
   display: flex;
   justify-content: space-between;
   position: relative;
+  align-items: center;
+  @media (max-width: 1400px) {
+    height: 40px;
+    margin-top: 20px;
+    padding: 0 24px;
+    margin-top: 20px;
+  }
 `;
 
 const TodoInput = styled.input`
@@ -88,6 +95,14 @@ const TodoInput = styled.input`
   font-size: 16px;
   line-height: 19px;
   font-family: "Inter", sans-serif;
+  @media (max-width: 1400px) {
+    width: calc(100% - 82px);
+    border-radius: 4px;
+    padding: 12px;
+    padding-left: 45px;
+    line-height: 16px;
+    font-size: 14px;
+  }
 `;
 
 const AddBtn = styled.button`
@@ -98,8 +113,15 @@ const AddBtn = styled.button`
   border: none;
   cursor: pointer;
   color: white;
-  font-size: 16px;
   flex-shrink: 0;
+  @media (max-width: 1400px) {
+    width: 73px;
+    border-radius: 4px;
+    img {
+      height: 15px;
+      width: 15px;
+    }
+  }
 `;
 
 const RoundBtn = styled.button`
@@ -107,11 +129,19 @@ const RoundBtn = styled.button`
   width: 20px;
   border-radius: 10px;
   border: 2px solid #20eeb0;
-  top: 14px;
   left: 45px;
   position: absolute;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
+  @media (max-width: 1400px) {
+    left: 38px;
+    height: 18px;
+    width: 18px;
+    svg {
+      height: 8px;
+      width: 8px;
+    }
+  }
 `;
